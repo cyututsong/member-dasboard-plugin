@@ -142,8 +142,6 @@ a.gf-export-btn:hover {
 
 
 
-
-
 /* RSVP LISTVIEW START HERE */
 
 
@@ -242,6 +240,85 @@ li.elementor-icon-list-item {
 
 
 /* RSVP LISTVIEW ENDS HERE */
+
+
+/* Capture Moment Start */
+
+.moment-capture-wrapper .divUploadContainer {
+    border: 1px solid;
+    width: 700px;
+    padding: 30px;
+    border-radius: 20px;
+    border: 2px solid #f1f1f1;
+}
+
+.moment-capture-wrapper .innerUploadContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    padding: 20px;
+    border-radius: 20px;
+    border: 2px dashed #333;
+}
+
+
+.moment-capture-wrapper .innerUploadContainer .profile {
+    max-width: 150px !important;
+    width: 100% !important;
+    max-height: 150px !important;
+    height: 100% !important;
+    border-radius: 100% !important;
+    margin: 0 auto;
+}
+
+.moment-capture-wrapper .innerUploadContainer p {
+    margin: 20px auto;
+    width: 60%;
+    text-wrap: auto;
+    text-align: center;
+}
+
+.moment-capture-wrapper button#moment-upload-btn {
+    align-self: flex-start;
+    margin: 0 auto;
+}
+
+.moment-capture-wrapper div#moment-upload-preview img {
+    height: 30px !important;
+    width: 30px !important;
+    border-radius: 0px !important;
+    object-fit: cover;
+}
+
+.moment-capture-wrapper div#moment-upload-preview {
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.moment-capture-wrapper p#add-more-image {
+    font-size: 14px;
+}
+
+.moment-capture-wrapper input#moment-submit-btn {
+    align-self: flex-start;
+    margin: 0 auto;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+ .moment-capture-wrapper  .divUploadContainer {
+        width: 100%;
+    }
+
+ .moment-capture-wrapper  .innerUploadContainer p {
+        width: 90%;
+    }
+}
+
+/* Capture Moment Ends */
 
 
 /* Invitation Card Download CSS START Here */

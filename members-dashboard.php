@@ -132,6 +132,8 @@ if ( ! function_exists( 'md_frontend_assets' ) ) {
             [],
             '1.2.1'
         );
+
+
     }
 }
 add_action( 'wp_enqueue_scripts', 'md_frontend_assets' );

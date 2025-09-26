@@ -20,6 +20,7 @@ function moment_capture_upload() {
         ";
     }
 
+    
     // 🔹 Verify user exists and email matches
     $user = get_userdata($user_id);
     if (!$user || strtolower($user->user_email) !== strtolower($email)) {
