@@ -68,3 +68,74 @@ function md_user_page_views_shortcode() {
     return intval($views);
 }
 add_shortcode( 'user_page_views', 'md_user_page_views_shortcode' );
+
+
+// Shortcode function for gallery
+function display_images_from_folder($atts) {
+    $user_id = get_current_user_id();
+
+    $atts = shortcode_atts(
+        array(
+            'folder' => 'moment_capture/moments_2',
+            'width'  => '80%',
+            'margin' => '20%',
+            'images_per_page' => 18,
+            'page'   => 1,
+        ),
+        $atts, 'moments_gallery'
+    );
+
+    // If called via AJAX, override
+    if (isset($_POST['page'])) {
+        $atts['page'] = (int) $_POST['page'];
+    }
+    if (isset($_POST['folder'])) {
+        $atts['folder'] = sanitize_text_field($_POST['folder']);
+    }
+    if (isset($_POST['images_per_page'])) {
+        $atts['images_per_page'] = (int) $_POST['images_per_page'];
+    }
+
+    // ✅ Use WordPress upload dir API
+    $upload_dir = wp_get_upload_dir();
+    $folder = trailingslashit($upload_dir['basedir']) . $atts['folder'] . '/';
+    $url_folder = trailingslashit($upload_dir['baseurl']) . $atts['folder'] . '/';
+
+    if (!is_dir($folder)) {
+        return '<p>No folder found: ' . esc_html($atts['folder']) . '</p>';
+    }
+
+    $images = glob($folder . "*.{jpg,jpeg,png,gif,bmp,tiff,webp}", GLOB_BRACE) ?: [];
+    $total_images = count($images);
+
+    $paged = max(1, (int) $atts['page']);
+    $start = ($paged - 1) * $atts['images_per_page'];
+    $images_on_page = array_slice($images, $start, $atts['images_per_page']);
+
+    $output = '<div class="moments-gallery" style="display:flex; flex-direction:column; align-items:center; gap:10px;">';
+
+    foreach ($images_on_page as $image) {
+        $image_url = str_replace($folder, $url_folder, $image);
+        $output .= '<img src="' . esc_url($image_url) . '" style="width:' . esc_attr($atts['width']) . '; margin-left:' . esc_attr($atts['margin']) . '; height:auto;" alt="Image">';
+    }
+
+    $output .= '</div>';
+
+    // Pagination
+    $total_pages = ceil($total_images / $atts['images_per_page']);
+    if ($total_pages > 1) {
+        $output .= '<div class="pagination" style="text-align:center; margin-top:20px;">';
+
+        if ($paged > 1) {
+            $output .= '<a href="#" class="prev-page" data-page="' . ($paged - 1) . '" data-folder="' . esc_attr($atts['folder']) . '" data-images-per-page="' . esc_attr($atts['images_per_page']) . '">Previous</a> ';
+        }
+
+        if ($paged < $total_pages) {
+            $output .= '<a href="#" class="next-page" data-page="' . ($paged + 1) . '" data-folder="' . esc_attr($atts['folder']) . '" data-images-per-page="' . esc_attr($atts['images_per_page']) . '">Next</a>';
+        }
+
+        $output .= '</div>';
+    }
+
+    return $output;
+}

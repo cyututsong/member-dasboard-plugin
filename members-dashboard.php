@@ -66,8 +66,6 @@ function md_track_page_views() {
 add_action( 'wp_head', 'md_track_page_views' );
 
 
-
-
 // Frontend assets
 function md_frontend_assets() {
     // css (example)
@@ -126,14 +124,27 @@ if ( ! function_exists( 'md_frontend_assets' ) ) {
             'ajaxurl' => admin_url( 'admin-ajax.php' ),
         ] );
 
-        wp_enqueue_style(
-            'md-gf-entries-css',
-            plugin_dir_url( __FILE__ ) . 'gf-entries.css',
-            [],
-            '1.2.1'
-        );
-
-
     }
 }
 add_action( 'wp_enqueue_scripts', 'md_frontend_assets' );
+
+
+function enqueue_ajax_pagination_script() {
+    wp_enqueue_script('jquery'); // Enqueue jQuery
+
+    wp_enqueue_script(
+        'moment-pagination',
+        plugin_dir_url( __FILE__ ) . 'moments-pagination.js',
+        [ 'jquery' ],
+        '1.0',
+        true
+    );
+
+
+    // Localize the script to provide the Ajax URL and nonce for security
+    wp_localize_script('moment-pagination', 'ajaxpagination', array(
+        'ajaxurl' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('ajax-pagination-nonce')
+    ));
+}
+add_action('wp_enqueue_scripts', 'enqueue_ajax_pagination_script');

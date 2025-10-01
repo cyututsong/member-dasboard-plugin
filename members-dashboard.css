@@ -239,6 +239,7 @@ li.elementor-icon-list-item {
 }
 
 
+
 /* RSVP LISTVIEW ENDS HERE */
 
 
@@ -250,6 +251,7 @@ li.elementor-icon-list-item {
     padding: 30px;
     border-radius: 20px;
     border: 2px solid #f1f1f1;
+    background-color: #fff;
 }
 
 .moment-capture-wrapper .innerUploadContainer {
@@ -287,8 +289,9 @@ li.elementor-icon-list-item {
 .moment-capture-wrapper div#moment-upload-preview img {
     height: 30px !important;
     width: 30px !important;
-    border-radius: 0px !important;
+    border-radius: 30px !important;
     object-fit: cover;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .moment-capture-wrapper div#moment-upload-preview {
@@ -305,6 +308,33 @@ li.elementor-icon-list-item {
     align-self: flex-start;
     margin: 0 auto;
 }
+
+
+/* Css on display upload image in members dashboard start here */ 
+.moments-gallery {
+    display: flex !important;
+    flex-direction: row !important; 
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+    flex-wrap: wrap; /* Allows items to wrap to the next line if necessary */
+}
+
+.moments-gallery .moments-gallery-item {
+    transition: transform 0.3s ease;
+    max-width: 180px;
+    width: 100%!important; /* Ensures images fill their container up to the max-width */
+    height: 230px!important;
+    box-sizing: border-box; /* Prevents padding/margins from overflowing */
+    margin:0px!important;
+    object-fit: cover!important;
+}
+
+.moments-gallery .moments-gallery-item:hover {
+    transform: scale(1.05); /* Optional: Slight zoom effect */
+}
+
+/* Css on display upload image in members dashboard start Ends Here */ 
 
 
 @media only screen and (max-width: 600px) {

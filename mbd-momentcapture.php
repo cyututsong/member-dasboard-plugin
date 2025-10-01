@@ -20,7 +20,7 @@ function moment_capture_upload() {
         ";
     }
 
-    
+
     // 🔹 Verify user exists and email matches
     $user = get_userdata($user_id);
     if (!$user || strtolower($user->user_email) !== strtolower($email)) {
@@ -147,7 +147,7 @@ function moment_capture_handle_upload() {
         }
 
         // 🔹 Target path per event
-        $custom_subdir = '/moment_capture/event_' . $event_id;
+        $custom_subdir = '/moment_capture/moments_' . $event_id;
         $target_dir    = $upload_dir['basedir'] . $custom_subdir;
 
         if (!file_exists($target_dir)) {
