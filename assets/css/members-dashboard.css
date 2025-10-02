@@ -322,9 +322,9 @@ li.elementor-icon-list-item {
 
 .moments-gallery .moments-gallery-item {
     transition: transform 0.3s ease;
-    max-width: 180px;
+    max-width: 200px;
     width: 100%!important; /* Ensures images fill their container up to the max-width */
-    height: 230px!important;
+    height: 260px!important;
     box-sizing: border-box; /* Prevents padding/margins from overflowing */
     margin:0px!important;
     object-fit: cover!important;
@@ -334,7 +334,20 @@ li.elementor-icon-list-item {
     transform: scale(1.05); /* Optional: Slight zoom effect */
 }
 
-/* Css on display upload image in members dashboard start Ends Here */ 
+.download-folder-btn {
+    margin-left:15px; 
+    padding:6px 12px; 
+    background:#A6CDC6; 
+    color:#fff; 
+    border-radius:4px; 
+    text-decoration:none;
+}
+
+
+/* Css on display upload image in members dashboard start Here */ 
+
+
+
 
 
 @media only screen and (max-width: 600px) {
@@ -347,6 +360,9 @@ li.elementor-icon-list-item {
         width: 90%;
     }
 }
+
+
+
 
 /* Capture Moment Ends */
 

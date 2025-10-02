@@ -81,7 +81,7 @@ function gf_entries_shortcode() {
     $form_id = intval(get_user_meta($user_id, 'rsvp_form_id', true));
 
     if (!$form_id) {
-        return '<p><strong>No Assigned Form Yet</strong></p>';
+        return '<p><strong>No RSVP Record found.</strong></p>';
     }
 
     ob_start();
