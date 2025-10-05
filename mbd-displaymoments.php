@@ -3,8 +3,12 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+
+
 // ✅ Shortcode function for gallery
 function display_images_from_folder($atts) {
+
+    static $modal_printed = false;
     $user_id = get_current_user_id();
 
     $atts = shortcode_atts(
@@ -36,12 +40,11 @@ function display_images_from_folder($atts) {
 
     // ✅ Wrapper that won’t get replaced, only inner content updates
     $output = '<div class="gallery-wrapper">';
-    $output .= '<div class="moments-gallery" style="display:flex; flex-direction:column; align-items:center; gap:10px;">';
+    $output .= '<div class="moments-gallery">';
 
     foreach ($images_on_page as $image) {
         $image_url = str_replace($folder, $url_folder, $image);
         $output .= '<img src="' . esc_url($image_url) . '" 
-            style="width:' . esc_attr($atts['width']) . '; margin-left:' . esc_attr($atts['margin']) . '; height:auto;" 
             alt="Image" 
             class="moments-gallery-item">';
     }
@@ -51,22 +54,23 @@ function display_images_from_folder($atts) {
     // ✅ Pagination + Download button inside wrapper
     $total_pages = ceil($total_images / $atts['images_per_page']);
     $output .= '<div class="pagination" style="text-align:center; margin-top:20px;">';
+                    $output .= '<div class="paginationNav">';
+                        if ($total_pages > 1) {
+                            if ($paged > 1) {
+                                $output .= '<a href="#" class="prev-page" 
+                                    data-page="' . ($paged - 1) . '" 
+                                    data-folder="' . esc_attr($atts['folder']) . '" 
+                                    data-images-per-page="' . esc_attr($atts['images_per_page']) . '">Previous</a> ';
+                            }
 
-                    if ($total_pages > 1) {
-                        if ($paged > 1) {
-                            $output .= '<a href="#" class="prev-page" 
-                                data-page="' . ($paged - 1) . '" 
-                                data-folder="' . esc_attr($atts['folder']) . '" 
-                                data-images-per-page="' . esc_attr($atts['images_per_page']) . '">Previous</a> ';
+                            if ($paged < $total_pages) {
+                                $output .= '<a href="#" class="next-page" 
+                                    data-page="' . ($paged + 1) . '" 
+                                    data-folder="' . esc_attr($atts['folder']) . '" 
+                                    data-images-per-page="' . esc_attr($atts['images_per_page']) . '">Next</a>';
+                            }
                         }
-
-                        if ($paged < $total_pages) {
-                            $output .= '<a href="#" class="next-page" 
-                                data-page="' . ($paged + 1) . '" 
-                                data-folder="' . esc_attr($atts['folder']) . '" 
-                                data-images-per-page="' . esc_attr($atts['images_per_page']) . '">Next</a>';
-                        }
-                    }
+                    $output .= '</div>';
 
                     // ✅ Download button
                     $output .= ' <a href="' . esc_url( add_query_arg([
@@ -78,7 +82,7 @@ function display_images_from_folder($atts) {
 
                 $output .= '</div>'; // close .pagination
     $output .= '</div>'; // close .gallery-wrapper
-
+        
     return $output;
 }
 add_shortcode('moments_gallery', 'display_images_from_folder');
@@ -145,3 +149,19 @@ function download_moments_folder() {
 }
 add_action('wp_ajax_download_moments_folder', 'download_moments_folder');
 add_action('wp_ajax_nopriv_download_moments_folder', 'download_moments_folder');
+
+
+
+function add_gallery_modal_once() {
+    if ( is_page(1367) ) {
+        ?>
+        <div id="imageModal" class="image-modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="modalImg">
+            <a class="prev">&#10094;</a>
+            <a class="next">&#10095;</a>
+        </div>
+        <?php
+    }
+}
+add_action('wp_footer', 'add_gallery_modal_once');

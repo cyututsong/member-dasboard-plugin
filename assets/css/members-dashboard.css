@@ -219,6 +219,7 @@ li.elementor-icon-list-item {
     padding: 20px;
     font-size: 14px;
     color: #555;
+    margin:0 auto;
 }
 
 .gf-loading .spinner {
@@ -312,13 +313,15 @@ li.elementor-icon-list-item {
 
 /* Css on display upload image in members dashboard start here */ 
 .moments-gallery {
-    display: flex !important;
-    flex-direction: row !important; 
-    align-items: center !important;
+    display: flow;
+    flex-direction: row !important;
+    align-items: start !important;
     justify-content: flex-start !important;
     gap: 10px !important;
-    flex-wrap: wrap; /* Allows items to wrap to the next line if necessary */
+    flex-wrap: wrap;
+    min-height: 80vh;
 }
+
 
 .moments-gallery .moments-gallery-item {
     transition: transform 0.3s ease;
@@ -327,6 +330,7 @@ li.elementor-icon-list-item {
     height: 260px!important;
     box-sizing: border-box; /* Prevents padding/margins from overflowing */
     margin:0px!important;
+    padding:0px 3px;
     object-fit: cover!important;
 }
 
@@ -343,11 +347,92 @@ li.elementor-icon-list-item {
     text-decoration:none;
 }
 
+.paginationNav a {
+    background: #A6CDC6;
+    padding: 5px 10px;
+    border-radius: 3px;
+    color:#fff;
+}
+
+
 
 /* Css on display upload image in members dashboard start Here */ 
 
 
 
+/* Gallery Modal Start */
+
+    .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        inset: 0;
+        background: rgba(0,0,0,0.9);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .image-modal.active {
+        display: flex;
+    }
+
+    .image-modal img {
+        max-width: 90%;
+        max-height: 80vh;
+        border-radius: 10px;
+        transition: opacity 0.3s ease;
+        opacity: 1;
+    }
+
+    .image-modal img.fade-out {
+        opacity: 0;
+    }
+
+    .image-modal .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10000;
+    }
+
+    .image-modal .prev,
+    .image-modal .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 16px;
+        color: #333333;
+        font-weight: bold;
+        font-size: 40px;
+        transition: 0.3s;
+        user-select: none;
+        z-index: 10000;
+    }
+
+    .image-modal .prev:hover, .image-modal .next:hover  {
+        color: #fff!important;
+        transition: color 600ms ease-in-out;
+    } 
+
+    .moments-gallery .moments-gallery-item:hover {
+        cursor: pointer;
+    }
+
+    .image-modal .prev { left: 20px; }
+    .image-modal .next { right: 20px; }
+
+    .image-modal .prev:hover,
+    .image-modal .next:hover {
+    color: #ccc;
+    }
+
+
+/* Gallery Modal Ends */
 
 
 @media only screen and (max-width: 600px) {
