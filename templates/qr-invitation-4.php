@@ -72,7 +72,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    background: #ededed;
+    background: #fff;
 }
 
 .topHeading {
