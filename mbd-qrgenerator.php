@@ -25,6 +25,10 @@ function rr_user_page_qrcode( $atts ) {
 
     $user_info  = get_userdata( $user_id );
     $user_email = $user_info ? $user_info->user_email : '';
+    $groom_name = get_user_meta( $user_id, 'groom_name', true );
+    $bride_name = get_user_meta( $user_id, 'bride_name', true );
+
+
 
     // ✅ Get user-specific page ID
     $page_id = get_user_meta( $user_id, 'invitation_page_id', true );

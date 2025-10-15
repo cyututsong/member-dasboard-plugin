@@ -1,27 +1,33 @@
 <?php
     $page_url = preg_replace('#^https?://#', 'www.', $page_url);
+
+
+
 ?>
 
 <div class="InvitationContainer">
 
     <div id="inviteCard" class="invitationQrcode container invTemplate-4">
 
-        <div class="col col-1" style="background-image:url('<?php echo esc_url( $bg_url ); ?>');" ></div>
+        <div class="col col-1" style="background-image:url('<?php echo esc_url( $bg_url ); ?>');" >
+
+        </div>
 
         <div class="col col-2">
             <div class="topHeading">
-                <h5>THOMAS</h5>
-                <p>and</p>
-                <h5>CHRISTINE</h5>
+                <h2><?php echo $groom_name; ?></h2>
+                <h3>and</h3>
+                <h2><?php echo $bride_name; ?></h2>
+                <h5 class="weddingDate">12 . 15 . 2026</h5>
+                <p>JOYFULL INVITE YOU TO THE CELEBRATION OF THEIR MARRIEAGE</p>
             </div>
             <div class="qrCodeSection">
-                <img src="<?php echo esc_attr( $dataUri ); ?>" alt="QR Code" />
+                <div class="col1"><img src="<?php echo esc_attr( $dataUri ); ?>" alt="QR Code" /></div>
+                <div class="col2"><p>For more details, please scan the QR code and RSVP online with love by <strong>November 30, 2025</strong>.</p></div>
             </div>
             <div class="bottomSection">
-                <p>JOYFULL INVITE YOU TO THE CELEBRATION OF THEIR MARRIEAGE</p>
-                <p class="weddingDate">12.15.2026</p>
                 <p class="invitationUrl">WWW.BESTWISHES.COM/SERENITY</p>
-            </div>
+             </div>
         </div>
 
     </div>
@@ -71,7 +77,7 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     background: #fff;
 }
 
@@ -80,40 +86,59 @@
     margin-bottom: 10px;
 }
 
+.qrCodeSection {
+    margin: 20px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.qrCodeSection .col1 {
+    flex: 0 0 40%;
+}
+
+
+.qrCodeSection p {
+    font-size: 14px;
+    text-align: left;
+    line-height: 1.5em;
+    font-family: 'futura';
+    letter-spacing: 1px;
+}
+
 .qrCodeSection, .bottomSection {
     text-align: center;
 }
 
-.qrCodeSection img {
-    width: 150px;
-}
 
-.qrCodeSection {
-    margin: 20px 0px;
-}
 
-.topHeading h5 {
+
+.topHeading h2 {
+    font-family: 'ArnoPro';
     font-size: 35px;
-    letter-spacing: 0.7px;
-    margin:0px;
+    margin: 0px;
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+}
+
+.topHeading h3 {
+    font-family: 'WhisperingSignature';
+    font-size: 2rem;
+    margin: 0px 0px -10px 0px;
 }
 
 .topHeading p {
-    margin:10px;
-}
-
-.bottomSection p:nth-child(1) {
-    text-transform: uppercase;
+    font-family: 'Futura';
+    letter-spacing: 2px;
     font-style: italic;
-    font-size: 14px;
+    font-size: 13px;
+    text-wrap-style: pretty;
 }
 
-p.weddingDate {
+.topHeading h5 {
+    font-family: 'Futura';
     font-size: 25px;
-    font-weight: 600;
+    margin: 20px 0px;
 }
-
-
 
 .overlayDownloadInvitation {
   display: none;

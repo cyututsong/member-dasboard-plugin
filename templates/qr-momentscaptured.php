@@ -1,5 +1,10 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
     $page_url = preg_replace('#^https?://#', 'www.', $page_url);
+
 ?>
 
 <div class="momentCaptureContainer">
@@ -25,7 +30,9 @@
                 <p>Upload your photos to our online album so we don't miss out of any of the fun</p>
             </div>
             <div class="groomandbride">
-                <p>-- Thomas & Christine --</p>
+                <p><?php echo $groom_name; ?></p>
+                <img src="https://localhost/bestwishes/wp-content/uploads/2025/10/heart-sketch.png">
+                <p><?php echo $bride_name; ?></p>
             </div>
         </div>
 
@@ -33,7 +40,7 @@
     </div>
 
     <div class="overlayDownloadInvitation">
-        <button id="downloadInviteBtn" class="btnInvitation">Download Your Invitation <img src="https://localhost/bestwishes/wp-content/uploads/2025/09/file-1.png"/></button>
+        <button id="downloadCapturedBtn" class="btnInvitation">Download Your Invitation <img src="https://localhost/bestwishes/wp-content/uploads/2025/09/file-1.png"/></button>
     </div>
 
 
@@ -42,6 +49,10 @@
 
 <style>
 
+
+.momentCaptureContainer {
+    position: relative;
+}
 
 .momentCapturedtopHeading h2 {
     font-family: 'WhisperingSignature', cursive;
@@ -98,15 +109,11 @@
     letter-spacing: 5px;
 }
 
-.groomandbride p {
-    text-align: center;
-}
-
-
 
 .qrMomentCapturedCodeSection {
     text-align: center;
 }
+
 
 
 #inviteMomentCapturedCard .bottomSection p {
@@ -119,6 +126,26 @@
     letter-spacing: 0.5px;
 }
 
+
+.groomandbride {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0px 20px;
+}
+
+
+.groomandbride p {
+    font-family: 'QuickLetter';
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 0px;
+    line-height: 0.8em;
+}
+
+.groomandbride img {
+    width: 30px;
+}
 
 .overlayDownloadInvitation {
   display: none;
@@ -151,8 +178,10 @@
 }
 
 
-.InvitationContainer:hover .overlayDownloadInvitation {
+.momentCaptureContainer:hover .overlayDownloadInvitation {
     display:flex;
 }
+
+
 
 </style>

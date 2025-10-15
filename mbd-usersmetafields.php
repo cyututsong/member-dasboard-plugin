@@ -20,21 +20,19 @@ function md_add_custom_user_fields( $user ) { ?>
             </td>
         </tr>
         <tr>
-            <th><label for="Groom Name">Grooms Full Name</label></th>
+            <th><label for="Groom Name">Groom's Name</label></th>
             <td>
-                <input type="text" name="groom_full_name" id="groom_full_name"
-                    value="<?php echo esc_attr( get_user_meta( $user->ID, 'groom_full_name', true ) ); ?>"
+                <input type="text" name="groom_name" id="groom_name"
+                    value="<?php echo esc_attr( get_user_meta( $user->ID, 'groom_name', true ) ); ?>"
                     class="regular-text" />
-                <p class="description">Enter Share Page Moment ID</p>
             </td>
         </tr>
         <tr>
-            <th><label for="Bride Name">Brides Full Name</label></th>
+            <th><label for="Bride Name">Bride's Name</label></th>
             <td>
-                <input type="text" name="bride_full_name" id="bride_full_name"
-                    value="<?php echo esc_attr( get_user_meta( $user->ID, 'bride_full_name', true ) ); ?>"
+                <input type="text" name="bride_name" id="bride_name"
+                    value="<?php echo esc_attr( get_user_meta( $user->ID, 'bride_name', true ) ); ?>"
                     class="regular-text" />
-                <p class="description">Enter Share Page Moment ID</p>
             </td>
         </tr>
         <tr>
@@ -85,11 +83,11 @@ function md_save_custom_user_fields( $user_id ) {
     if ( isset( $_POST['moment_capture_page_id'] ) ) {
         update_user_meta( $user_id, 'moment_capture_page_id', sanitize_text_field( $_POST['moment_capture_page_id'] ) );
     }
-    if ( isset( $_POST['groom_full_name'] ) ) {
-        update_user_meta( $user_id, 'groom_full_name', sanitize_text_field( $_POST['groom_full_name'] ) );
+    if ( isset( $_POST['groom_name'] ) ) {
+        update_user_meta( $user_id, 'groom_name', sanitize_text_field( $_POST['groom_name'] ) );
     }
-    if ( isset( $_POST['bride_full_name'] ) ) {
-        update_user_meta( $user_id, 'bride_full_name', sanitize_text_field( $_POST['bride_full_name'] ) );
+    if ( isset( $_POST['bride_name'] ) ) {
+        update_user_meta( $user_id, 'bride_name', sanitize_text_field( $_POST['bride_name'] ) );
     }
     if ( isset( $_POST['wedding_date'] ) ) {
         update_user_meta( $user_id, 'wedding_date', sanitize_text_field( $_POST['wedding_date'] ) );
